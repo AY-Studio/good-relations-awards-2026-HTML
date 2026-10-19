@@ -187,6 +187,7 @@
   padding: 20px 24px 32px;
   background: #fff;
   overflow-y: auto;
+  overscroll-behavior: contain;
   transform: translateX(100%);
   visibility: hidden;
   transition:

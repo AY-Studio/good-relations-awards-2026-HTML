@@ -7,6 +7,20 @@
 
 html {
   scroll-behavior: smooth;
+
+  &.lenis {
+    height: auto;
+    scroll-behavior: auto;
+
+    body {
+      height: auto;
+    }
+
+    &.lenis-stopped {
+      overflow: clip;
+    }
+  }
+
   @include reduced-motion {
     scroll-behavior: auto;
   }

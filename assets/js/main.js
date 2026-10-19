@@ -1,4 +1,24 @@
 (() => {
+  const lenis = typeof Lenis !== 'undefined' ? new Lenis({
+    anchors: true,
+    lerp: 0.1
+  }) : null;
+
+  if (lenis) {
+    if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+      gsap.registerPlugin(ScrollTrigger);
+      lenis.on('scroll', ScrollTrigger.update);
+      gsap.ticker.add((time) => lenis.raf(time * 1000));
+      gsap.ticker.lagSmoothing(0);
+    } else {
+      const animateScroll = (time) => {
+        lenis.raf(time);
+        window.requestAnimationFrame(animateScroll);
+      };
+      window.requestAnimationFrame(animateScroll);
+    }
+  }
+
   const menu = document.querySelector('.mobile-menu');
   const openButton = document.querySelector('.menu-toggle');
   const closeButton = document.querySelector('.mobile-menu__close');
@@ -10,6 +30,7 @@
     menu.setAttribute('aria-hidden', String(!open));
     openButton.setAttribute('aria-expanded', String(open));
     document.body.classList.toggle('menu-open', open);
+    if (lenis) open ? lenis.stop() : lenis.start();
     if (open) {
       lastFocus = document.activeElement;
       closeButton.focus();

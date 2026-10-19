@@ -18,3 +18,5 @@ sass --no-source-map --style=compressed assets/scss/style.scss assets/css/style.
 ```
 
 Bootstrap 5.3.8 supplies the grid and layout utilities. Swiper 14.3.0 powers the winners carousel. Both are loaded from a CDN in `index.html`.
+
+Lenis 1.3.27 smooths wheel scrolling and in-page anchor links. It runs on GSAP's ticker so ScrollTrigger stays synchronized, and it respects reduced-motion preferences. The mobile menu scrolls independently while open. Lenis is also loaded from a CDN in `index.html`.
