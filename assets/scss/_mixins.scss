@@ -1,0 +1,128 @@
+$xs: 0;
+$sm: 576px;
+$md: 768px;
+$lg: 992px;
+$xl: 1200px;
+$xxl: 1440px;
+
+@mixin xs {
+  @media screen and (min-width: $xs) {
+    @content;
+  }
+}
+
+@mixin sm {
+  @media screen and (min-width: $sm) {
+    @content;
+  }
+}
+
+@mixin sm-down {
+  @media screen and (max-width: $sm - 0.02px) {
+    @content;
+  }
+}
+
+@mixin md {
+  @media screen and (min-width: $md) {
+    @content;
+  }
+}
+
+@mixin md-down {
+  @media screen and (max-width: $md - 0.02px) {
+    @content;
+  }
+}
+
+@mixin lg {
+  @media screen and (min-width: $lg) {
+    @content;
+  }
+}
+
+@mixin lg-down {
+  @media screen and (max-width: $lg - 0.02px) {
+    @content;
+  }
+}
+
+@mixin xl {
+  @media screen and (min-width: $xl) {
+    @content;
+  }
+}
+
+@mixin xl-down {
+  @media screen and (max-width: $xl - 0.02px) {
+    @content;
+  }
+}
+
+@mixin xxl {
+  @media screen and (min-width: $xxl) {
+    @content;
+  }
+}
+
+@mixin max-width($width) {
+  @media screen and (max-width: $width) {
+    @content;
+  }
+}
+
+@mixin reduced-motion {
+  @media (prefers-reduced-motion: reduce) {
+    @content;
+  }
+}
+
+@mixin hover-capable {
+  @media (hover: hover) and (pointer: fine) {
+    @content;
+  }
+}
+
+@mixin dark {
+  @media (prefers-color-scheme: dark) {
+    @content;
+  }
+}
+
+@mixin light {
+  @media (prefers-color-scheme: dark) {
+    @content;
+  }
+}
+
+/* Vertical rhythm for a full-width band: equal padding top and bottom,
+   on one scale across the site. Pair it with a `margin-bottom: 0` on the
+   band's last child, or trailing content margins will make the bottom
+   read heavier than the top. */
+@mixin section-rhythm {
+  padding-top: $band__padding-y;
+  padding-bottom: $band__padding-y;
+
+  @include md {
+    padding-top: $band__padding-y-md;
+    padding-bottom: $band__padding-y-md;
+  }
+
+  @include xl {
+    padding-top: $band__padding-y-xl;
+    padding-bottom: $band__padding-y-xl;
+  }
+}
+
+// Center block
+@mixin center-block {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+// Column width with margin
+@mixin column-width($numberColumns: 3) {
+  width: map-get($columns, $numberColumns) -
+    (($columns__margin * ($numberColumns - 1)) / $numberColumns);
+}

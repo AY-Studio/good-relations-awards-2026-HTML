@@ -1,0 +1,345 @@
+@use "variables" as *;
+@use "mixins" as *;
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  @include reduced-motion {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  margin: 0;
+  color: $ink;
+  background: #fff;
+  font-family: "Nunito", sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  @include lg {
+    font-size: 18px;
+  }
+}
+
+body.menu-open {
+  overflow: hidden;
+}
+
+img {
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font: inherit;
+}
+
+p {
+  margin: 0 0 1.25em;
+}
+
+h1,
+h2,
+h3 {
+  font-weight: 700;
+}
+
+.container {
+  max-width: 1280px;
+  @include lg-down {
+    padding-left: $mobile-pad;
+    padding-right: $mobile-pad;
+  }
+}
+
+.container-fluid {
+  padding-left: $mobile-pad;
+  padding-right: $mobile-pad;
+  @include lg {
+    padding-left: $desktop-pad;
+    padding-right: $desktop-pad;
+  }
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  min-height: 48px;
+  padding: 10px 20px;
+  border: 1.5px solid transparent;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.5;
+  white-space: nowrap;
+  transition:
+  transform 0.2s ease,
+  box-shadow 0.2s ease;
+  @include reduced-motion {
+    transition: none;
+  }
+
+}
+
+.line-link {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    width: fit-content;
+    color: inherit;
+    text-decoration: none;
+    font-size: 16px;
+
+    &::after {
+      position: absolute;
+      bottom: -0.2rem;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: currentColor;
+      content: "";
+      transform: scaleX(0);
+      transform-origin: right;
+      transition: transform 0.3s ease;
+    }
+
+    &:hover::after,
+    &:focus-visible::after {
+      transform: scaleX(1);
+      transform-origin: left;
+    }
+  }
+
+.button:focus-visible,
+a:focus-visible,
+button:focus-visible {
+  outline: 3px solid #2b7fff;
+  outline-offset: 3px;
+}
+
+.button img {
+  display: block;
+  flex: none;
+}
+
+.button--outline {
+  --button-flare-background: linear-gradient(105deg, #{$orange}, #{$purple});
+
+  border-color: $ink;
+  background: transparent;
+  color: $ink;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 7px 18px rgba(0, 0, 0, 0.13);
+  }
+
+  @include hover-capable {
+    @include reduced-motion {
+      &:hover {
+        background: var(--button-flare-background);
+      }
+    }
+  }
+}
+
+.button--gradient {
+  color: white;
+  background: linear-gradient(105deg, $orange, $purple);
+}
+
+.button--flare,
+.button--outline {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+
+  @include hover-capable {
+    &:hover {
+      .button__label {
+        color: white;
+      }
+    }
+  }
+
+  .button__flare {
+    position: absolute;
+    z-index: 0;
+    inset: 0;
+    pointer-events: none;
+    transform: scale(0);
+    transform-origin: 0 0;
+    will-change: transform;
+
+    &::before {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 130%;
+      aspect-ratio: 1;
+      border-radius: 50%;
+      background: var(--button-flare-background);
+      content: "";
+      transform: translate(-50%, -50%);
+    }
+  }
+
+  .button__label,
+  > img {
+    position: relative;
+    z-index: 1;
+  }
+}
+
+.button--white {
+  border-color: white;
+  background: white;
+  color: $ink;
+}
+
+.button--white-outline {
+  border-color: white;
+  color: white;
+  background: transparent;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 7px 18px rgba(0, 0, 0, 0.13);
+  }
+
+}
+
+.skip-link {
+  position: fixed;
+  z-index: 1000;
+  top: -100px;
+  left: 16px;
+  padding: 8px 16px;
+  background: white;
+}
+
+.skip-link:focus {
+  top: 16px;
+}
+
+.gradient-surface {
+  background-image: url("../images/figma/309d7.png");
+  background-size: 130% 110%;
+  background-position: 45% 50%;
+  animation: gradient-drift 30s ease-in-out infinite alternate;
+  @include reduced-motion {
+    animation: none;
+  }
+  @include lg {
+    background-size: 106% 106%;
+  }
+}
+
+@keyframes gradient-drift {
+  from {
+    background-position: 43% 50%;
+  }
+
+  to {
+    background-position: 57% 50%;
+  }
+}
+
+.confetti-section {
+  position: relative;
+  overflow: hidden;
+}
+
+.confetti {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.confetti img {
+  position: absolute;
+  width: auto;
+  height: auto;
+  max-width: 45px;
+  opacity: 0.65;
+  transform-origin: center;
+  @include lg {
+    max-width: 80px;
+    opacity: 0.8;
+  }
+}
+
+.confetti img:nth-child(1) {
+  top: 7%;
+  left: 4%;
+}
+
+.confetti img:nth-child(2) {
+  top: 10%;
+  right: 8%;
+}
+
+.confetti img:nth-child(3) {
+  top: 25%;
+  left: 12%;
+}
+
+.confetti img:nth-child(4) {
+  top: 29%;
+  right: 5%;
+}
+
+.confetti img:nth-child(5) {
+  top: 44%;
+  left: 2%;
+}
+
+.confetti img:nth-child(6) {
+  top: 50%;
+  right: 11%;
+}
+
+.confetti img:nth-child(7) {
+  top: 62%;
+  left: 7%;
+}
+
+.confetti img:nth-child(8) {
+  top: 67%;
+  right: 4%;
+}
+
+.confetti img:nth-child(9) {
+  top: 81%;
+  left: 14%;
+}
+
+.confetti img:nth-child(10) {
+  top: 83%;
+  right: 9%;
+}
+
+.confetti img:nth-child(11) {
+  top: 16%;
+  left: 42%;
+}
+
+.confetti img:nth-child(12) {
+  top: 91%;
+  left: 43%;
+}
+
+.confetti img:nth-child(13) {
+  top: 3%;
+  right: 36%;
+}

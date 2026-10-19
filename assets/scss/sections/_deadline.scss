@@ -1,0 +1,41 @@
+@use "../mixins" as *;
+
+.deadline {
+  height: 54px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  color: white;
+  @include lg {
+    height: 90px;
+  }
+}
+
+.deadline__swiper {
+  width: 100%;
+}
+
+.deadline__swiper .swiper-wrapper {
+  transition-timing-function: linear;
+}
+
+.deadline__slide {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  width: auto;
+  padding-right: 16px;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.3;
+  white-space: nowrap;
+  @include lg {
+    gap: 32px;
+    padding-right: 32px;
+    font-size: 32px;
+  }
+}
+
+.deadline__slide b {
+  font-weight: 700;
+}

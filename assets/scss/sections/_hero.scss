@@ -1,0 +1,89 @@
+@use "../mixins" as *;
+
+.hero {
+  height: 600px;
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+  color: white;
+  @include lg {
+    height: 1031px;
+  }
+}
+
+.hero__image {
+  position: absolute;
+  inset: 0;
+  background: url("../images/figma/hero-source-1.png") center center / cover no-repeat;
+  @include lg-down {
+    background-image: url("../images/figma/hero-source-1.png");
+    background-size: 100% 100%;
+    background-position: center;
+  }
+}
+
+.hero__shade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.06) 70%);
+  @include lg {
+    background:
+      linear-gradient(90deg, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.08) 65%),
+      linear-gradient(0deg, rgba(0, 0, 0, 0.4), transparent 40%);
+  }
+}
+
+.hero__content {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  padding: 0 24px 48px;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.25);
+  @include lg {
+    padding: 0 94px 96px;
+  }
+}
+
+.hero h1 {
+  font-size: 38px;
+  line-height: 1.1;
+  font-weight: 800;
+  margin-bottom: 16px;
+  @include lg {
+    font-size: 64px;
+    line-height: 1.1;
+    margin-bottom: 24px;
+  }
+}
+
+.hero p {
+  max-width: 635px;
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 24px;
+  @include lg-down {
+    line-height: 1.5;
+  }
+  @include lg {
+    font-size: 20px;
+    margin-bottom: 32px;
+  }
+}
+
+.hero__actions {
+  display: flex;
+  gap: 16px;
+  text-shadow: none;
+}
+
+.hero__actions .button {
+  min-height: 48px;
+  padding: 10px 17px;
+  font-size: 16px;
+  @include lg {
+    min-height: 52px;
+    padding: 12px 24px;
+    font-size: 18px;
+  }
+}

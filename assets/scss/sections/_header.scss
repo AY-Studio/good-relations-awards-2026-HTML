@@ -1,0 +1,253 @@
+@use "../variables" as *;
+@use "../mixins" as *;
+
+.site-header {
+  height: 79px;
+  display: flex;
+  align-items: center;
+  background: #fff;
+  box-shadow: none;
+  position: relative;
+  z-index: 30;
+  @include lg {
+    height: 120px;
+    box-shadow: 0 4px 3px rgba(0, 0, 0, 0.16);
+  }
+}
+
+.site-header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.navbar {
+  
+  transition: transform .35s ease, box-shadow .35s ease;
+
+  // a {
+  //   position: relative;
+  //   &::after {
+  //     position: absolute;
+  //     bottom: -0.2rem;
+  //     left: 0;
+  //     width: 100%;
+  //     height: 2px;
+  //     background: currentColor;
+  //     content: "";
+  //     transform: scaleX(0);
+  //     transform-origin: right;
+  //     transition: transform 0.3s ease;
+  //   }
+
+  //   &:hover::after,
+  //   &:focus-visible::after {
+  //     transform: scaleX(1);
+  //     transform-origin: left;
+  //   }
+  // }
+
+  &.is-sticky {
+    position: fixed;
+    z-index: 1200;
+    top: 0;
+    right: 0;
+    left: 0;
+    width: 100%;
+    // box-shadow: 0 8px 24px rgba(0, 0, 50, 0.12);
+
+    // A fixed navbar is a stacking context, so its own background cannot cover
+    // a negative-z-index mega menu as it slides down. Paint a layer above it.
+    &::before {
+      position: absolute;
+      z-index: -1;
+      inset: 0;
+      background: $white;
+      content: "";
+      pointer-events: none;
+    }
+
+    .mega-menu {
+      z-index: -2;
+    }
+  }
+
+  &.is-sticky.is-hidden {
+    transform: translateY(-100%);
+  }
+}
+
+.site-logo {
+  display: flex;
+  align-items: center;
+  flex: none;
+  width: 176px;
+
+  @include lg {
+    width: 230px;
+  }
+
+  @include xl {
+    width: 287px;
+  }
+}
+
+.site-logo__mark {
+  display: block;
+  flex: 0 0 22.3%;
+  width: 22.3%;
+  height: auto;
+  overflow: visible;
+}
+
+.site-logo__star,
+.site-logo__burst,
+.site-logo__center-star {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.site-logo__text {
+  display: block;
+  flex: 0 0 77.7%;
+  width: 77.7%;
+  height: auto;
+}
+
+.desktop-nav {
+  display: none;
+  align-items: center;
+  gap: 18px;
+  font-size: 16px;
+  font-weight: 500;
+  @include lg {
+    display: flex;
+  }
+  @include xl {
+    gap: 32px;
+  }
+}
+
+.desktop-nav > a:not(.button):hover {
+  color: $purple;
+}
+
+.desktop-nav .button--outline {
+  margin-left: 4px;
+}
+
+.header-nominate {
+  --button-flare-background: #fff;
+
+  @include hover-capable {
+    &:hover {
+      .button__label {
+        color: #000;
+      }
+
+      > img {
+        filter: brightness(0);
+      }
+    }
+
+    @include reduced-motion {
+      &:hover {
+        background: #fff;
+        border-color: $ink;
+      }
+    }
+  }
+}
+
+.menu-toggle {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 0 6px 10px;
+  background: none;
+  border: 0;
+  color: $ink;
+  font-size: 16px;
+  @include lg {
+    display: none;
+  }
+}
+
+.menu-toggle img {
+  width: 20px;
+  height: 20px;
+}
+
+.mobile-menu {
+  display: block;
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  padding: 20px 24px 32px;
+  background: #fff;
+  overflow-y: auto;
+  transform: translateX(100%);
+  visibility: hidden;
+  transition:
+    transform 0.3s ease,
+    visibility 0.3s;
+  @include lg {
+    display: none;
+  }
+}
+
+.mobile-menu.is-open {
+  transform: translateX(0);
+  visibility: visible;
+}
+
+.mobile-menu__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.mobile-menu__top img {
+  display: block;
+}
+
+.mobile-menu__top a img {
+  width: 176px;
+  height: 39px;
+}
+
+.mobile-menu__close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: 0;
+  background: none;
+}
+
+.mobile-menu__close img {
+  width: 19px;
+  height: 19px;
+}
+
+.mobile-menu__nav {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  margin-top: 57px;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.mobile-menu__actions {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 36px;
+}
+
+.mobile-menu__actions .button {
+  width: 100%;
+}

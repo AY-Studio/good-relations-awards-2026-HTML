@@ -1,0 +1,173 @@
+@use "../mixins" as *;
+
+.nomination {
+  padding: 64px 0;
+  background: white;
+  @include lg {
+    padding: 112px 0;
+  }
+}
+
+.nomination__intro {
+  max-width: 768px;
+}
+
+.nomination h2 {
+  font-size: 28px;
+  line-height: 1.2;
+  margin-bottom: 16px;
+  @include lg {
+    font-size: 44px;
+    margin-bottom: 24px;
+  }
+}
+
+.nomination__intro p {
+  max-width: 614px;
+  font-size: 16px;
+  margin-bottom: 18px;
+  @include lg {
+    font-size: 18px;
+  }
+}
+
+.nomination__steps {
+  margin-top: 36px;
+  border-top: 1px solid #333;
+  @include lg {
+    margin-top: 72px;
+  }
+}
+
+.nomination__burst-defs {
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+}
+
+.nomination__step {
+  padding: 24px 0;
+  border-right: 0;
+
+  &:nth-child(1) {
+    --burst-color: #e71d72;
+  }
+
+  &:nth-child(2) {
+    --burst-color: #9810fa;
+  }
+
+  &:nth-child(3) {
+    --burst-color: #f39200;
+  }
+
+  @include lg-down {
+    border-bottom: 1px solid #333;
+    text-align: center;
+  }
+  @include lg {
+    padding: 28px 32px 10px;
+    border-right: 1px solid #333;
+  }
+}
+
+.nomination__step:first-child {
+  padding-left: 0;
+  @include lg-down {
+    padding: 24px 0;
+    border-right: 0;
+    border-bottom: 1px solid #333;
+  }
+}
+
+.nomination__step:last-child {
+  border-right: 0;
+}
+
+.nomination__step-icon {
+  width: 96px;
+  height: 96px;
+  display: grid;
+  place-items: center;
+  margin-bottom: 16px;
+
+  @include lg-down {
+    margin-inline: auto;
+  }
+
+  @include lg {
+    margin-bottom: 24px;
+  }
+}
+
+.nomination__step-burst,
+.nomination__step-number {
+  grid-area: 1 / 1;
+}
+
+.nomination__step-burst {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  color: var(--burst-color);
+  transform-origin: center;
+}
+
+.nomination__step-rays,
+.nomination__step-dots {
+  transform-box: view-box;
+  transform-origin: center;
+}
+
+.nomination__step-number {
+  position: relative;
+  color: #333;
+  font-size: 52px;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.nomination__step h3 {
+  font-size: 22px;
+  margin-bottom: 12px;
+  @include lg {
+    font-size: 24px;
+  }
+}
+
+.nomination__step p {
+  font-size: 16px;
+  max-width: 320px;
+  @include lg-down {
+    margin-inline: auto;
+    margin-bottom: 0;
+  }
+  @include lg {
+    font-size: 18px;
+  }
+}
+
+.nomination__actions {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin-top: 32px;
+  @include lg-down {
+    flex-wrap: wrap;
+  }
+}
+
+.text-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.text-link img {
+  width: 24px;
+  height: 24px;
+}
