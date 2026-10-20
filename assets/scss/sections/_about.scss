@@ -84,7 +84,7 @@
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  gap: 18px 14px;
+  gap: 50px;
   max-width: 866px;
   margin: auto;
   @include lg-down {
@@ -92,7 +92,7 @@
   }
   @include lg {
     display: flex;
-    gap: 24px 32px;
+    gap: 32px;
   }
 }
 

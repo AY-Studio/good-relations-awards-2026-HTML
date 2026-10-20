@@ -18,7 +18,6 @@
   background: url("../images/figma/hero-source-1.png") center center / cover no-repeat;
   @include lg-down {
     background-image: url("../images/figma/hero-source-1.png");
-    background-size: 100% 100%;
     background-position: center;
   }
 }

@@ -119,7 +119,7 @@ h3 {
       bottom: -0.2rem;
       left: 0;
       width: 100%;
-      height: 2px;
+      height: 1px;
       background: currentColor;
       content: "";
       transform: scaleX(0);
@@ -159,9 +159,13 @@ button:focus-visible {
   }
 
   @include hover-capable {
+    &:hover .button__label {
+      color: #000;
+    }
+
     @include reduced-motion {
       &:hover {
-        background: var(--button-flare-background);
+        background: linear-gradient(105deg, rgba($orange, 0.8), rgba($purple, 0.8));
       }
     }
   }
@@ -181,7 +185,8 @@ button:focus-visible {
   @include hover-capable {
     &:hover {
       .button__label {
-        color: white;
+        // color: white;
+        // mix-blend-mode: difference
       }
     }
   }
@@ -190,6 +195,7 @@ button:focus-visible {
     position: absolute;
     z-index: 0;
     inset: 0;
+    opacity: 0.8;
     pointer-events: none;
     transform: scale(0);
     transform-origin: 0 0;
